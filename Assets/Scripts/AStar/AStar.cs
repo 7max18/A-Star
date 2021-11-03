@@ -47,8 +47,11 @@ public class AStar
         closedList = new PriorityQueue();
         Node node = null;
 
+        //Keep running steps until the goal is found or the open list is exhausted
         while (openList.Length != 0)
         {
+            //openList is always sorted with the lowest estimated cost first (see Node.cs),
+            //so after each round of checking neighbors, the one with the lowest cost is automatically made the focus of the next round
             node = openList.First();
 
             if (node.position == goal.position)
@@ -72,16 +75,16 @@ public class AStar
 					//Cost from current node to this neighbour node
 	                float cost = HeuristicEstimateCost(node, neighbourNode);	
 	                
-					//Total Cost So Far from start to this neighbour node
+					//Total Cost So Far from start to this neighbour node (G)
 	                float totalCost = node.nodeTotalCost + cost;
 					
-					//Estimated cost for neighbour node to the goal
+					//Estimated cost for neighbour node to the goal (H)
 	                float neighbourNodeEstCost = HeuristicEstimateCost(neighbourNode, goal);					
 					
 					//Assign neighbour node properties
-	                neighbourNode.nodeTotalCost = totalCost;
+	                neighbourNode.nodeTotalCost = totalCost; //G
 	                neighbourNode.parent = node;
-	                neighbourNode.estimatedCost = totalCost + neighbourNodeEstCost;
+	                neighbourNode.estimatedCost = totalCost + neighbourNodeEstCost; //F
 	
 	                //Add the neighbour node to the list if not already existed in the list
 	                if (!openList.Contains(neighbourNode))
@@ -93,6 +96,7 @@ public class AStar
 			
             #endregion
             
+            //remove the focused-on node from the open list once the round of neighbor-checking is done
             closedList.Push(node);
             openList.Remove(node);
         }

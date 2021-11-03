@@ -5,9 +5,9 @@ using System;
 public class Node : IComparable
 {
     #region Fields
-    public float nodeTotalCost;         //Total cost so far for the node
-    public float estimatedCost;         //Estimated cost from this node to the goal node
-    public bool bObstacle;              //Does the node is an obstacle or not
+    public float nodeTotalCost;         //Total cost so far for the node (G)
+    public float estimatedCost;         //Estimated cost from this node to the goal node (F)
+    public bool bObstacle;              //Is the node an obstacle or not?
     public Node parent;                 //Parent of the node in the linked list
     public Vector3 position;            //Position of the node
     #endregion
@@ -17,8 +17,8 @@ public class Node : IComparable
     /// </summary>
     public Node()
     {
-        this.estimatedCost = 0.0f;
-        this.nodeTotalCost = 1.0f;
+        this.estimatedCost = 0.0f; //F
+        this.nodeTotalCost = 1.0f; //G
         this.bObstacle = false;
         this.parent = null;
     }

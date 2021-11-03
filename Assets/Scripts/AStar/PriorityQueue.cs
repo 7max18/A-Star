@@ -44,7 +44,7 @@ public class PriorityQueue
     }
 
     /// <summary>
-    /// Add the node from the priority queue and sort the remaining with the estimated total cost
+    /// Remove the node from the priority queue and sort the remaining with the estimated total cost
     /// </summary>
     public void Remove(Node node)
     {
