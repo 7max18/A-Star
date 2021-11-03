@@ -14,8 +14,7 @@ public class TestCode : MonoBehaviour
     private float elapsedTime = 0.0f;
     public float intervalTime = 1.0f; //Interval time between path finding
 
-	// Use this for initialization
-	void Start () 
+    void Start () 
     {
         objStartCube = GameObject.FindGameObjectWithTag("Start");
         objEndCube = GameObject.FindGameObjectWithTag("End");

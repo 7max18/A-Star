@@ -1,12 +1,18 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class Target : MonoBehaviour
 {
     public Transform targetMarker;
+    private UnityEvent mouseClicked;
 
     void Start ()
     {
+        if (mouseClicked == null)
+        {
+            mouseClicked = new UnityEvent();
+        }
     }
 
     void Update ()
@@ -24,6 +30,8 @@ public class Target : MonoBehaviour
                 Vector3 targetPosition = hitInfo.point;
                 targetMarker.position = targetPosition;
             }
+
+            EventManager.TriggerEvent("Mouse Clicked");
         }
     }
 
